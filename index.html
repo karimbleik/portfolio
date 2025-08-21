@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+     <div class="navbar-container">
+        <header>
+            <nav>
+                <a href="#intro" class="logo">Karim</a>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#intro" class="active">HOME</a></li>
+                    <li><a href="#about">ABOUT</a></li>
+                    <li><a href="#education">SKILL</a></li>
+                    <li><a href="#projects">PROJECTS</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
+                </ul>
+                 <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    ☰
+                </button>
+
+                        </nav>
+        </header>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+    
+        document.addEventListener('click', function(event) {
+            const navLinks = document.getElementById('navLinks');
+            const mobileBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (!event.target.closest('nav') && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Handle dropdown on mobile
+        document.querySelectorAll('.dropdown > a').forEach(item => {
+            item.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    this.parentElement.classList.toggle('active');
+                }
+            });
+        });
+    </script>
+
+    
+    <section class="intro" id="intro">
+        <div class="intro-text">
+        <h1>HI I'AM KARIM!</h1>
+        <h1>FRONT-END DEVELOPER</h1>
+        <br>
+        <p>A passionate Front-End Developer eager to create clean, responsive and user-friendly websites.</p>
+        <p>I love turning ideas into interactive experiences.</p>
+        <a href="CV-KARIMBLEIK.pdf" class="download-btn" download aria-label="Download Karim's CV">Download CV</a>
+        </div>
+
+        <div class="intro-image">
+            <img src="images/tobeup.png" alt="Karim's photo">
+        </div>
+    </section>
+
+
+   
+
+    <section class="about" id="about">
+
+        <div class="aboutext">
+
+            <h1>About Me</h1>
+            <br>
+            <p>A passionate Front-End Developer with a strong foundation in HTML, CSS, and JavaScript.
+               I love creating clean, responsive, and user-friendly interfaces that turn ideas into interactive experiences.
+               As a recent computer science graduate, I’m eager to continue learning, build real-world projects, and grow into a full-stack developer in the future.
+               I enjoy collaborating with teams, solving problems creatively, and bringing designs to life on the web.</p>
+
+               <a href="CV-KARIMBLEIK.pdf" class="download-btn" download aria-label="Download Karim's CV">Download CV</a>
+
+        </div>
+
+        <div class="aboutimage">
+
+            <img src="images/tobeup.png" alt="about photo">
+
+        </div>
+
+    </section>
+
+    <!-- Education & Skills -->
+<section class="edu-skills" id="education">
+  <div class="education">
+    <h2>Education</h2>
+
+    <ul class="timeline" aria-label="Education timeline">
+      <li>
+        <div class="time"><strong>2022 - 2025</strong></div>
+        <div class="card">
+          <h3>B.Sc. in Computer Science</h3>
+          <p class="small">Lebanese University — Major: Computer Science</p>
+          <p>Studied algorithms, data structures, web development and databases and software engineering. Final year project: responsive web app for fitness</p>
+        </div>
+      </li>
+
+      <li>
+        <div class="time"><strong>2019</strong></div>
+        <div class="card">
+          <h3>Jobran Twayne School</h3>
+          <p>Hands-on training: HTML, CSS, JavaScript, responsive patterns, and project-based learning.</p>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+
+  <div class="skills">
+    <h2>Skills</h2>
+
+    <div class="skill-grid">
+      <div class="skill">
+        <div class="skill-head">
+          <span>HTML</span><span class="percent">80%</span>
+        </div>
+        <div class="skill-bar" aria-hidden="true">
+          <div class="skill-level" style="--level:80%"></div>
+        </div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-head">
+          <span>CSS</span><span class="percent">70%</span>
+        </div>
+        <div class="skill-bar" aria-hidden="true">
+          <div class="skill-level" style="--level:70%"></div>
+        </div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-head">
+          <span>JavaScript</span><span class="percent">65%</span>
+        </div>
+        <div class="skill-bar" aria-hidden="true">
+          <div class="skill-level" style="--level:65%"></div>
+        </div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-head">
+          <span>React</span><span class="percent">0%</span>
+        </div>
+        <div class="skill-bar" aria-hidden="true">
+          <div class="skill-level" style="--level:0%"></div>
+        </div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-head">
+          <span>Git</span><span class="percent">75%</span>
+        </div>
+        <div class="skill-bar" aria-hidden="true">
+          <div class="skill-level" style="--level:75%"></div>
+        </div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-head">
+          <span>Responsive Design</span><span class="percent">65%</span>
+        </div>
+        <div class="skill-bar" aria-hidden="true">
+          <div class="skill-level" style="--level:65%"></div>
+        </div>
+      </div>
+    </div>
+
+
+    <p class="skills-note">I focus on writing clean, accessible markup and creating pixel-accurate responsive UI. I practice component-based design and version control workflows.</p>
+  </div>
+</section>
+
+
+<!-- Projects -->
+<section class="projects-section" id="projects">
+  <div class="projects-inner">
+    <h2 class="section-title">Projects</h2>
+    <p class="section-sub">Selected projects — a mix of team and solo work. Click "Details" for more info.</p>
+
+    <div class="project-grid">
+      <!-- Project 1: Team Fitness -->
+      <article class="project-card" data-project="fitness">
+        <div class="project-media">
+          <img src="images/port3.jpg" alt="Fitness app screenshot (placeholder)">
+        </div>
+        <div class="project-content">
+          <h3 class="proj-title">Fitness Tracker (Team Project)</h3>
+          <p class="proj-short">Responsive fitness web app with calorie calculator, nutrition tracking, user accounts and database-backed storage.</p>
+
+          <div class="proj-tags">
+            <span class="tag">Full-Stack</span>
+            <span class="tag">Responsive</span>
+            <span class="tag">Database</span>
+          </div>
+
+          <div class="proj-actions">
+            <button class="btn btn-disabled" disabled aria-disabled="true" title="Host currently down">Live demo (host down)</button>
+             <button class="btn btn-disabled" disabled aria-disabled="true" title="code">Code</button>
+            
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 2: Portfolio (this site) -->
+      <article class="project-card" data-project="portfolio">
+        <div class="project-media">
+          <img src="images/port4.png" alt="Portfolio screenshot (this site)">
+        </div>
+        <div class="project-content">
+          <h3 class="proj-title">Personal Portfolio</h3>
+          <p class="proj-short">This portfolio — responsive HTML/CSS/JS, accessible design, and deploy-ready. Shows projects, skills, and contact.</p>
+
+          <div class="proj-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+          </div>
+
+          <div class="proj-actions">
+            <a class="btn" href="#" target="_blank" rel="noopener">View live</a>
+            
+            
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<div class="project-modal" id="projectModal" aria-hidden="true">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <button class="modal-close" aria-label="Close details" data-close>✕</button>
+    <h3 id="modal-title" class="modal-title"></h3>
+    <p class="modal-sub" id="modal-sub"></p>
+
+    <div class="modal-body" id="modal-body"></div>
+
+    <div class="modal-footer" id="modal-footer"></div>
+  </div>
+</div>
+
+
+
+<section class="contact-section" id="contact">
+    <div class="contact-header">
+        <h1>Contact Me</h1>
+        <p>Feel free to reach out via any of the methods below. I’m open to new opportunities!</p>
+    </div>
+
+    <div class="contact-cards">
+        <!-- Phone -->
+        <div class="contact-card">
+            <div class="contact-icon">📞</div>
+            <h3>Phone</h3>
+            <p>+961 81 056 135</p>
+        </div>
+
+        <!-- Gmail -->
+        <div class="contact-card">
+            <div class="contact-icon">✉️</div>
+            <h3>Email</h3>
+            <p>karimbleik@gmail.com</p>
+        </div>
+
+        <!-- Address -->
+        <div class="contact-card">
+            <div class="contact-icon">📍</div>
+            <h3>Address</h3>
+            <p>Beirut, Lebanon</p>
+        </div>
+
+        <!-- GitHub -->
+        <div class="contact-card">
+            <div class="contact-icon">💻</div>
+            <h3>LinkedIn</h3>
+            <a href="https://www.linkedin.com/in/karim-bleik-766289352/" target="_blank">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" 
+             alt="LinkedIn" width="30" height="30">
+            </a>
+
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <p>© 2025 Karim Bleik. All rights reserved.</p>
+    <div class="social-links">
+        <a href="https://www.linkedin.com/in/karim-bleik-766289352/" target="_blank">LinkedIn</a>
+        <a href="https://www.instagram.com/bleik_karim/#" target="_blank">Instagram</a>
+        <a href="https://github.com/karimbleik" target="_blank">Github</a>
+    </div>
+</footer>
+
+   
+</body>
