@@ -147,10 +147,10 @@
 
       <div class="skill">
         <div class="skill-head">
-          <span>JavaScript</span><span class="percent">65%</span>
+          <span>JavaScript</span><span class="percent">70%</span>
         </div>
         <div class="skill-bar" aria-hidden="true">
-          <div class="skill-level" style="--level:65%"></div>
+          <div class="skill-level" style="--level:75%"></div>
         </div>
       </div>
 
@@ -165,10 +165,10 @@
 
       <div class="skill">
         <div class="skill-head">
-          <span>Responsive Design</span><span class="percent">75%</span>
+          <span>React</span><span class="percent">70%</span>
         </div>
         <div class="skill-bar" aria-hidden="true">
-          <div class="skill-level" style="--level:75%"></div>
+          <div class="skill-level" style="--level:70%"></div>
         </div>
       </div>
     </div>
@@ -195,53 +195,72 @@
     <h2 class="section-title">Projects</h2>
     <p class="section-sub">Selected projects — a mix of team and solo work. Click "Details" for more info.</p>
 
-    <div class="project-grid">
-      <!-- Project 1: Team Fitness -->
-      <article class="project-card" data-project="fitness">
-        <div class="project-media">
-          <img src="images/port5.png" alt="Fitness app screenshot (placeholder)">
-        </div>
-        <div class="project-content">
-          <h3 class="proj-title">Fitness Tracker (Team Project)</h3>
-          <p class="proj-short">Responsive fitness web app with calorie calculator, nutrition tracking, user accounts and database-backed storage.</p>
+    <div class="carousel-wrap" aria-label="Projects carousel">
+  <button class="carousel-btn prev" aria-label="Previous projects" data-action="prev">‹</button>
 
-          <div class="proj-tags">
-            <span class="tag">Full-Stack</span>
-            <span class="tag">Responsive</span>
-            <span class="tag">Database</span>
+  <div class="carousel-view">
+    <div class="carousel-track">
+      <!--Project 1-->
+      <div class="carousel-item">
+        <article class="project-card" data-project="fitness">
+          <div class="project-media">
+            <img src="images/port5.png" alt="Fitness app screenshot (placeholder)">
           </div>
-
-          <div class="proj-actions">
-            <button class="btn btn-disabled" disabled aria-disabled="true" title="Host currently down">Live demo (host down)</button>
-             <button class="btn btn-disabled" disabled aria-disabled="true" title="code">Code</button>
-            
+          <div class="project-content">
+            <h3 class="proj-title">Fitness Tracker (Team Project)</h3>
+            <p class="proj-short">Responsive fitness web app with calorie calculator, nutrition tracking, user accounts and database-backed storage.</p>
+            <div class="proj-tags">
+              <span class="tag">Full-Stack</span>
+              <span class="tag">Responsive</span>
+              <span class="tag">Database</span>
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
+      </div>
 
-      <!-- Project 2: Portfolio (this site) -->
-      <article class="project-card" data-project="portfolio">
-        <div class="project-media">
-          <img src="images/port4.png" alt="Portfolio screenshot (this site)">
-        </div>
-        <div class="project-content">
-          <h3 class="proj-title">Personal Portfolio</h3>
-          <p class="proj-short">This portfolio — responsive HTML/CSS/JS, accessible design, and deploy-ready. Shows projects, skills, and contact.</p>
-
-          <div class="proj-tags">
-            <span class="tag">HTML</span>
-            <span class="tag">CSS</span>
-            <span class="tag">JavaScript</span>
+      <!--Project 2-->
+      <div class="carousel-item">
+        <article class="project-card" data-project="portfolio">
+          <div class="project-media">
+            <img src="images/port4.png" alt="Portfolio screenshot (this site)">
           </div>
-
-          <div class="proj-actions">
-            <a class="btn" href="#" target="_blank" rel="noopener">View live</a>
-            
-            
+          <div class="project-content">
+            <h3 class="proj-title">Personal Portfolio</h3>
+            <p class="proj-short">This portfolio — responsive HTML/CSS/JS, accessible design, and deploy-ready. Shows projects, skills, and contact.</p>
+            <div class="proj-tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+            </div>
+           
           </div>
-        </div>
-      </article>
+        </article>
+      </div>
+
+      <!--Project 3-->
+      <div class="carousel-item">
+        <article class="project-card" data-project="ecommerce">
+          <div class="project-media">
+            <img src="images/port6.png" alt="Recipe finder screenshot">
+          </div>
+          <div class="project-content">
+            <h3 class="proj-title">Recipe Finder</h3>
+            <p class="proj-short">A responsive Recipe Finder web app with meal filtering and a favorites page.</p>
+            <div class="proj-tags">
+              <span class="tag">React</span>
+              <span class="tag">API</span>
+              <span class="tag">Responsive</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+     
     </div>
+  </div>
+
+  <button class="carousel-btn next" aria-label="Next projects" data-action="next">›</button>
+</div>
   </div>
 </section>
 
@@ -311,5 +330,106 @@
     </div>
 </footer>
 
+<script>
+(function () {
+  const track = document.querySelector('.carousel-track');
+  const prevBtn = document.querySelector('.carousel-btn.prev');
+  const nextBtn = document.querySelector('.carousel-btn.next');
+  const view = document.querySelector('.carousel-view');
+
+  if (!track || !prevBtn || !nextBtn || !view) return;
+
+
+  function getScrollStep() {
+    const first = track.querySelector('.carousel-item');
+    if (!first) return Math.round(view.clientWidth * 0.8);
+    const firstWidth = first.getBoundingClientRect().width;
+    
+    const gapVal = getComputedStyle(track).gap || getComputedStyle(track).getPropertyValue('column-gap') || '16px';
+    const gap = parseFloat(gapVal) || 16;
+    return Math.round(firstWidth + gap);
+  }
+
+  function updateButtons() {
+    const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+   
+    const hasOverflow = track.scrollWidth > track.clientWidth + 1;
+    prevBtn.disabled = !hasOverflow || track.scrollLeft <= 10;
+    nextBtn.disabled = !hasOverflow || track.scrollLeft >= (maxScroll - 10);
+  }
+
+  
+  prevBtn.addEventListener('click', () => {
+    track.scrollBy({ left: -getScrollStep(), behavior: 'smooth' });
+  });
+  nextBtn.addEventListener('click', () => {
+    track.scrollBy({ left: getScrollStep(), behavior: 'smooth' });
+  });
+
+  
+  let scrollTimeout;
+  track.addEventListener('scroll', () => {
+    updateButtons();
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => updateButtons(), 120);
+  });
+
+ 
+  let isDown = false;
+  let startX = 0, startScroll = 0;
+
+  track.addEventListener('pointerdown', (e) => {
+    isDown = true;
+    track.setPointerCapture(e.pointerId);
+    startX = e.clientX;
+    startScroll = track.scrollLeft;
+    track.classList.add('dragging');
+  });
+
+  track.addEventListener('pointermove', (e) => {
+    if (!isDown) return;
+    const dx = e.clientX - startX;
+    track.scrollLeft = startScroll - dx;
+  });
+
+  function endDrag(e) {
+    if (!isDown) return;
+    isDown = false;
+    try { track.releasePointerCapture(e.pointerId); } catch (err) {}
+    track.classList.remove('dragging');
+    snapToNearest();
+  }
+
+  track.addEventListener('pointerup', endDrag);
+  track.addEventListener('pointercancel', endDrag);
+
+  function snapToNearest() {
+    const items = Array.from(track.querySelectorAll('.carousel-item'));
+    if (!items.length) return;
+    const trackRect = track.getBoundingClientRect();
+    let nearest = items[0], nearestDist = Infinity;
+    items.forEach(it => {
+      const rect = it.getBoundingClientRect();
+      const dist = Math.abs(rect.left - trackRect.left);
+      if (dist < nearestDist) { nearestDist = dist; nearest = it; }
+    });
+    track.scrollTo({ left: nearest.offsetLeft, behavior: 'smooth' });
+  }
+
+  // keyboard support
+  track.tabIndex = 0;
+  track.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); track.scrollBy({ left: getScrollStep(), behavior: 'smooth' }); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); track.scrollBy({ left: -getScrollStep(), behavior: 'smooth' }); }
+  });
+
+ 
+  window.addEventListener('load', () => setTimeout(updateButtons, 80));
+  window.addEventListener('resize', () => setTimeout(updateButtons, 80));
+})();
+</script>
+
+
    
 </body>
+</html>
